@@ -1,0 +1,55 @@
+# filepath: .github/workflows/ci.yml
+name: CI for Sales Predictor
+
+on:
+    push:
+      branches:
+        - '**' # Run on all branches
+    pull_request:
+      branches:
+        - main # Run on pull requests targeting the main branch only
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Docker
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      # Build the Docker image
+      - name: Build Docker image
+        run: |
+          docker build -t sales-api .
+
+      # Run the Docker container
+      - name: Start Docker container
+        run: |
+          docker run -d -p 8000:8000 --name sales-api-container sales-api
+        # Wait for the container to be ready
+      - name: Wait for API to be ready
+        run: |
+          sleep 10
+
+      # Install dependencies for testing
+      - name: Install testing dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pytest joblib pandas scikit-learn 
+
+      # Run API tests
+      - name: Run API tests
+        run: |
+          pytest test/test_api.py
+          pytest test/test_models.py
+
+      # Stop and remove the Docker container
+      - name: Stop and clean up Docker container
+        run: |
+          docker stop sales-api-container
+          docker rm sales-api-container
