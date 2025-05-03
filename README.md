@@ -186,7 +186,7 @@ curl -X 'POST' \
 ---
 
 ## Modeling Approach
-Refer to the [Dailey Sales Forecasting Notebook](notebooks/Daily-Sales-Modelling.ipynb) for detailed explanation of modelling choices, feature engineering, and model training steps.
+Refer to the [Dailey Sales Forecasting Report](notebooks/Daily-Sales-Modelling.pdf) for detailed explanation of modelling choices, feature engineering, and model training steps. The same can be reproduce at [Dailey Sales Forecasting Notebook](notebooks/Daily-Sales-Modelling.ipynb)
 
 ---
 
