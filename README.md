@@ -73,7 +73,7 @@ localhost:8000/docs
 ```
 Open the above URL on any browser. To try any API, select the API and click on `Try it out`. Provide the expected payload and click on execute. The resonse and CURL commands will be shown in the response section.
 
-### Endpoint: `/predict-sales`
+### Endpoint: `/forecast-sales`
 **Method:** POST  
 Forecast daily sales for the next 14 days from an uploaded file. It supports both CSV(.csv) and Excel(.xlsx) formats.
 
