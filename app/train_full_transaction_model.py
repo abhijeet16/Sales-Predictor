@@ -14,7 +14,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
-from preprocess import add_features
+from preprocess import preprocess_prediciion_data
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -40,7 +40,7 @@ except Exception as e:
 
 # Feature engineering
 logger.info("Performing feature engineering.")
-preprocessed_df = add_features(df)
+preprocessed_df = preprocess_prediciion_data(df)
 
 # Define features and target
 X = preprocessed_df[['Age', 'Gender', 'Product Category', 'Day', 'Month', 'Weekday', 'isWeekend', 'isAfter25']]

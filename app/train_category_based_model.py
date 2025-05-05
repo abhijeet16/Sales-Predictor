@@ -4,15 +4,18 @@ import pandas as pd
 import numpy as np
 import joblib
 import logging
+
 from sklearn.model_selection import train_test_split, GridSearchCV
+from xgboost import XGBRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
-from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
-from preprocess import add_features
+import joblib
+
+from preprocess import preprocess_prediciion_data
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -38,7 +41,7 @@ except Exception as e:
 
 # Feature engineering
 logger.info("Performing feature engineering.")
-preprocessed_df = add_features(df)
+preprocessed_df = preprocess_prediciion_data(df)
 
 # Define features and target
 X = preprocessed_df[['Product Category', 'Day', 'Month', 'Weekday', 'isWeekend', 'isAfter25']]
@@ -69,7 +72,7 @@ preprocessor = ColumnTransformer([
 # Model pipeline
 pipeline = Pipeline([
     ('preprocessor', preprocessor),
-    ('regressor', GradientBoostingRegressor(random_state=config["random_state"]))
+    ('regressor', XGBRegressor(random_state=config["random_state"]))
 ])
 
 grid_search = GridSearchCV(pipeline, config["category_model_params"], cv=3, scoring='neg_mean_squared_error', n_jobs=-1)

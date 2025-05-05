@@ -186,8 +186,12 @@ curl -X 'POST' \
 ---
 
 ## Modeling Approach
-Refer to the [Dailey Sales Forecasting Report](notebooks/Daily-Sales-Modelling.pdf) for detailed explanation of modelling choices, feature engineering, and model training steps. The same can be reproduce at [Dailey Sales Forecasting Notebook](notebooks/Daily-Sales-Modelling.ipynb)
+Two different types of modelling is experimented.
+- Forecasting model:<br>
+A forecasting model with a horizon of 14 days(2-weeks) is experimented with different algorithms. Refer to the [Dailey Sales Forecasting Report](notebooks/Daily-Sales-Modelling.pdf) for detailed explanation of modelling choices, feature engineering, and model training steps. The same can be reproduce at [Dailey Sales Forecasting Notebook](notebooks/Daily-Sales-Modelling.ipynb) <br>
 
+- Date based prediction:<br>
+Two prediction models with multivariate models are experimented to predicted sales on a particular day in future. Refer to the [Date based Prediction Report](notebooks/Date-based-Future-Prediction.pdf) for detailed explanation of modelling choices, feature engineering, and model training steps. The same can be reproduce at [Date based Prediction Notebook](notebooks/Date-based-Future-Prediction.ipynb) 
 ---
 
 
@@ -235,14 +239,23 @@ Standard logging is done using `logging` library of python. The logs can be obse
 ---
 
 ## Enhancements
-- **Authentication**:
-  - Add authentication mechanisms for secure API access.
-- **Retraining Pipeline**:
-  - Set up a cron-based pipeline for periodic model retraining from automatic downloading of latest data.
-- **Deployment**:
-  - Deploy the API on cloud platforms like AWS or GCP.
-- **Structured Logging Monitoring**:
-  - Add detailed structuring logging and monitoring for production use.
+- Add authentication mechanisms for secure API access.
+- Set up a cron-based pipeline for periodic model retraining from automatic downloading of latest data.
+- Deploy the API on cloud platforms like AWS or GCP.
+- Add detailed structuring logging and monitoring for production use.
+- Rate limit to avoid misuse and resource exhaustion. This will stablize the APIs and also help in managing the costs
+- The dataset was limited only for a year. Wider dataset may result in better model understandng.
+
+---
+
+## Scale in production
+- Deploy the APIs on cloud platforms like AWS, Azure or GCP
+- Use a load balancer like NGINX to spread the traffic
+- Auto-scaling can be configured with auto-spinning of pods
+- Use a database service to store data like sales-data
+- Performance monitoring using Grafana, Prometheus or similar service
+- Auto-training models on cloud with dynamic updation database maybe (every 3 months)
+- Versioning models for easy rollback
 
 ---
 
