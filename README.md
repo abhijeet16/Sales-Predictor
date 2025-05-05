@@ -245,6 +245,7 @@ Standard logging is done using `logging` library of python. The logs can be obse
 - Add detailed structuring logging and monitoring for production use.
 - Rate limit to avoid misuse and resource exhaustion. This will stablize the APIs and also help in managing the costs
 - The dataset was limited only for a year. Wider dataset may result in better model understandng.
+- Configure Slack webhook, for immediate notification of CRON jons or test results on CI.
 
 ---
 
