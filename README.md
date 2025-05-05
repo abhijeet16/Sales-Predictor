@@ -52,8 +52,8 @@ sales-predictor/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-repo/sales-predictor
-cd sales-predictor
+git clone https://github.com/abhijeet16/Sales-Predictor.git
+cd Sales-Predictor
 ```
 
 ### 2. Build the Docker Image
