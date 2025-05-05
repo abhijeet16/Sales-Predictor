@@ -19,9 +19,10 @@ sales-predictor/
 │
 ├── data/
 │   └── sales_data.xlsx                   # Raw sales data
-│   ├── sales_data_sample.xlsx            # Sample sales data
+│   └── sales_data_sample.xlsx            # Sample sales data
 │
 ├── models/
+│   ├── best_model_nar.pkl                # Trained model for forecasting 14 days ahead
 │   ├── full_transaction_model.pkl        # Trained model for full transaction sales
 │   └── category_sales_model.pkl          # Trained model for category sales
 │
