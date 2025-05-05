@@ -191,12 +191,17 @@ Refer to the [Dailey Sales Forecasting Report](notebooks/Daily-Sales-Modelling.p
 ---
 
 
-### Continuous Integration
-The project uses GitHub Actions for CI. The workflow is defined in `.github/workflows/ci.yml` and runs the following steps on every push or pull request to the `main` branch:
-1. Install dependencies.
-2. Run unit tests using `pytest`.
+## Continuous Integration
+This repository is powered by CI with GitHub Actions. The workflow is defined in `.github/workflows/ci.yml` and runs the following steps on every push or pull request to the `main` branch:.
+The CI has only one job, i.e. test. In this job
+- It builds the docker image
+- Runs the container, which also starts the FastAPI
+- All the test cases are run using `pytest`
+- Any fail test casse or any failed stage in the job will fail the action
+- At the end, it stops and cleans the docker container
 
 ---
+
 
 ## Testing
 To perform tests locally,
@@ -222,19 +227,10 @@ pytest test/test_api.py
 ```
 ---
 
-## CI
-This repository is powered by CI. The action is triggered for any push from any branch and also when a pull request is created to the main branch. The 
-The CI has only one job, i.e. test. In this job
-- It builds the docker image
-- Runs the container, which also starts the FastAPI
-- All the test cases are run
-- Any fail test casse or any failed stage in the job will fail the action
-- At the end, it stops and cleans the docker container
-
----
 
 ## Logging
 Standard logging is done using `logging` library of python. The logs can be observed in the terminal where container is running in the logs section of running container in Docker Desktop.
+
 
 ---
 
