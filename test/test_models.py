@@ -87,7 +87,7 @@ def test_category_model():
     }])
     pred = model.predict(input_df)
     assert pred.shape == (1,), "Prediction should return a single value."
-    assert isinstance(pred[0], float), "Prediction should be a float."
+    assert isinstance(pred[0], (float, np.floating)), "Prediction should be a float."
     print("Category model test passed. Predicted log value:", pred[0])
 
 # Run All Tests
